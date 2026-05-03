@@ -1,0 +1,193 @@
+{
+  "common": {
+    "close": "Close",
+    "cancel": "Cancel",
+    "select": "Select",
+    "save": "Save",
+    "loading": "⏳ Loading...",
+    "no_files": "No files"
+  },
+  "errors": {
+    "connection": "Server connection error",
+    "connection_with_message": "❌ Connection Error:\n{message}\n\nMake sure the server is reachable",
+    "cannot_connect_server": "❌ Cannot connect to server.",
+    "unexpected": "An unexpected error occurred.",
+    "unknown": "Unknown error",
+    "with_message": "Error: {message}"
+  },
+  "languages": {
+    "ar": "Arabic",
+    "en": "English",
+    "zh": "Chinese",
+    "ja": "Japanese"
+  },
+  "loader": {
+    "restore_session": "Loading previous session…",
+    "restoring_session": "Restoring session…"
+  },
+  "sessions": {
+    "title": "Sessions",
+    "new": "New Session",
+    "clear_all": "Clear All",
+    "open": "Open",
+    "delete": "Delete",
+    "none_saved": "No saved sessions",
+    "none_guest": "No guest sessions",
+    "err_load": "Failed to load sessions",
+    "err_save_guest_settings": "Cannot save settings for guest user",
+    "err_save_settings": "Failed to save settings",
+    "err_delete_guest": "Cannot delete guest sessions",
+    "confirm_delete_one": "Are you sure you want to delete this session?",
+    "err_delete_one": "Failed to delete session",
+    "confirm_delete_all": "Are you sure you want to delete all sessions?",
+    "err_cleanup_guest": "Cannot cleanup guest files",
+    "cleanup_ok": "Files cleaned successfully",
+    "cleanup_failed": "File cleanup failed",
+    "err_new_guest": "Cannot create session for guest",
+    "err_login_guest": "Cannot login as guest"
+  },
+  "favorites": {
+    "title": "Favorite Templates",
+    "added": "Template added to favorites",
+    "none_added": "No templates have been added to favorites yet.",
+    "confirm_remove_one": "Are you sure you want to remove this template from favorites?",
+    "add_to_favorites": "Add to favorites",
+    "remove_from_favorites": "Remove from favorites",
+    "template_fallback": "Template"
+  },
+  "plugins": {
+    "title": "Plugins",
+    "available": "Available Plugins",
+    "none_installed": "No plugins installed",
+    "click_to_run": "Click to run",
+    "instructions": "Instructions",
+    "settings": "Settings",
+    "enabled": "Enabled",
+    "add_new_hint": "To add new plugins, place the folder in",
+    "load_failed": "Failed to load plugins",
+    "show_failed_with_error": "Failed to show plugins: {message}",
+    "no_action_defined": "This plugin has no defined action",
+    "toggle_failed": "Failed to change plugin state",
+    "confirm_reload_apply": "The page will reload to apply changes. Continue?",
+    "not_found": "Plugin not found",
+    "instructions_prefix": "Instructions: ",
+    "instructions_show_failed": "Failed to show instructions",
+    "not_loaded_yet": "Plugin is not loaded yet. Enable it and reload the page",
+    "settings_show_failed_with_error": "Failed to show settings: {message}"
+  },
+  "templates": {
+    "title": "Templates"
+  },
+  "my_prompt": {
+    "add_new": "+ Add New Prompt",
+    "command_placeholder": "Command text or description...",
+    "save_prompt": "Save Prompt",
+    "pick_image": "Please select an image",
+    "enter_text_or_command": "Please enter text or command",
+    "saved_ok": "Prompt saved successfully",
+    "save_failed_with_error": "Failed to save template: {error}",
+    "save_failed": "Failed to save template",
+    "confirm_delete": "Do you want to delete this template?",
+    "delete_failed": "Delete failed"
+  },
+  "settings": {
+    "title": "User Settings",
+    "username": "Username:",
+    "language": "Language:",
+    "dark_mode": "⚫ Dark Mode",
+    "ollama_model": "🤖 OLLAMA Model:",
+    "show_lm_button": "👁️ Show LM Button",
+    "translate_lm_messages": "Translate LM Messages",
+    "auto_translate_arabic_prompt": "Auto-translate Arabic → English",
+    "login": "Login",
+    "delete_all_media": "Delete All Media",
+    "confirm_delete_all_media": "This will delete all media listed in media_paths.txt for this user. Are you sure?",
+    "delete_done": "Deleted.\nDeleted: {deleted}\nMissing: {missing}\nFailed: {failed}\n\nCache was cleared too",
+    "delete_failed": "Delete failed: {message}"
+  },
+  "composer": {
+    "pos_neg": "Positive/Negative",
+    "upload": "Upload file",
+    "type_here": "Type here …"
+  },
+  "chat": {
+    "edit": "Edit",
+    "resend": "Resend",
+    "edit_resend": "Edit & resend",
+    "send_to_bar": "Send to bar",
+    "regen": "Regenerate",
+    "open_mask_editor": "Open mask editor",
+    "video_load_failed": "❌ Failed to load video",
+    "no_text": "(No text)",
+    "negative_prefix": "[Negative] ",
+    "no_valid_images_for_message": "⚠️ No valid images linked to this message or the previous one.",
+    "regen_http_failed": "❌ Regeneration failed (HTTP {status})",
+    "regen_failed_unexpected": "❌ Regeneration failed: unexpected error."
+  },
+  "lm": {
+    "button_title": "LM: Chat with OLLAMA",
+    "button_active_title": "LM: Chat with OLLAMA (Active)",
+    "no_models_help": "❌ No models found.\n\nMake sure:\n1. OLLAMA is running (ollama serve)\n2. A model is installed (ollama pull tinyllama)\n3. Server connection is available",
+    "choose_model": "📚 Choose OLLAMA model",
+    "no_models_install": "❌ No models found. Install one: ollama pull tinyllama",
+    "error_with_status_help": "❌ OLLAMA Error {status}:\n\nMake sure OLLAMA is running:\nollama serve\n\nModel: {model}",
+    "error_details_help": "❌ OLLAMA Error:\n{error}\n\nMake sure OLLAMA is running and the model exists",
+    "no_valid_reply": "❓ No valid reply was received from OLLAMA",
+    "no_file_support": "ℹ️ LM mode currently does not support file uploads. Attached files will be ignored."
+  },
+  "audio_trim": {
+    "title": "Trim Audio",
+    "start": "Start:",
+    "end": "End:",
+    "duration": "Selected Duration:",
+    "preview": "Preview Selection",
+    "cancel": "No Trim",
+    "apply": "Trim"
+  },
+  "crop": {
+    "crop": "Crop",
+    "no_crop": "No Crop"
+  },
+  "edit": {
+    "edit_message": "Edit Message",
+    "send_with_same_files": "Send with the same files",
+    "send_edited": "Send Edited"
+  },
+  "easy_tag": {
+    "enable_autocomplete": "Enable tag autocomplete",
+    "merge_quality": "Merge quality tags",
+    "tags_file": "Tags file:",
+    "chants_file": "Chants file:"
+  },
+  "tags": {
+    "no_results": "No results"
+  },
+  "uploader": {
+    "only_media_files": "Please drop media files only (image, video, audio)"
+  },
+  "mask": {
+    "editor_title": "🎨 Mask Editor",
+    "open_editor_short": "🎨 Mask Editor",
+    "brush_size": "Size:",
+    "opacity": "Opacity:",
+    "status_pick_image": "Choose an image to start drawing",
+    "zoom_in": "Zoom in",
+    "zoom_out": "Zoom out",
+    "zoom_reset": "Reset view",
+    "pan_mode": "Pan mode",
+    "soft_hard_brush": "Soft/Hard brush",
+    "softness": "Softness",
+    "eraser": "Eraser",
+    "clear_all": "Clear all",
+    "invert": "Invert",
+    "brush_color": "Brush color",
+    "apply": "Apply",
+    "save_with_overlay": "Save with overlay",
+    "no_selected_image": "No image selected",
+    "must_upload_image_first": "You must upload an image first",
+    "saved_with_overlay": "✓ Saved with overlay",
+    "select_image_to_edit": "Choose an image to edit mask",
+    "image_load_failed": "Failed to load image",
+    "invalid_image": "Invalid image"
+  }
+}

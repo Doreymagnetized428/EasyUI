@@ -1,0 +1,193 @@
+{
+  "common": {
+    "close": "إغلاق",
+    "cancel": "إلغاء",
+    "select": "اختيار",
+    "save": "حفظ",
+    "loading": "⏳ جاري التحميل...",
+    "no_files": "لا توجد ملفات"
+  },
+  "errors": {
+    "connection": "خطأ في الاتصال بالخادم",
+    "connection_with_message": "❌ خطأ اتصال:\n{message}\n\nتأكد من الاتصال بالخادم",
+    "cannot_connect_server": "❌ تعذر الاتصال بالخادم.",
+    "unexpected": "حدث خطأ غير متوقع.",
+    "unknown": "خطأ غير معروف",
+    "with_message": "حدث خطأ: {message}"
+  },
+  "languages": {
+    "ar": "العربية",
+    "en": "English",
+    "zh": "中文",
+    "ja": "日本語"
+  },
+  "loader": {
+    "restore_session": "جاري تحميل الجلسة السابقة…",
+    "restoring_session": "جارٍ استرجاع الجلسة…"
+  },
+  "sessions": {
+    "title": "سجل الجلسات",
+    "new": "جلسة جديدة",
+    "clear_all": "مسح الكل",
+    "open": "فتح",
+    "delete": "حذف",
+    "none_saved": "لا توجد جلسات مسجلة",
+    "none_guest": "لا توجد جلسات للضيف",
+    "err_load": "تعذر تحميل الجلسات",
+    "err_save_guest_settings": "لا يمكن حفظ إعدادات المستخدم \"guest\"",
+    "err_save_settings": "فشل حفظ الإعدادات",
+    "err_delete_guest": "لا يمكن حذف جلسات الضيف",
+    "confirm_delete_one": "هل أنت متأكد من حذف هذه الجلسة؟",
+    "err_delete_one": "فشل حذف الجلسة",
+    "confirm_delete_all": "هل أنت متأكد من حذف جميع الجلسات؟",
+    "err_cleanup_guest": "لا يمكن تنظيف ملفات الضيف",
+    "cleanup_ok": "تم تنظيف الملفات بنجاح",
+    "cleanup_failed": "فشل تنظيف الملفات",
+    "err_new_guest": "لا يمكن إنشاء جلسة للضيف",
+    "err_login_guest": "لا يمكن تسجيل دخول باسم guest"
+  },
+  "favorites": {
+    "title": "القوالب المفضلة",
+    "added": "تم إضافة القالب إلى المفضلة",
+    "none_added": "لا توجد قوالب مضافة إلى المفضلة بعد.",
+    "confirm_remove_one": "هل أنت متأكد من إزالة هذا القالب من المفضلة؟",
+    "add_to_favorites": "إضافة إلى المفضلة",
+    "remove_from_favorites": "إزالة من المفضلة",
+    "template_fallback": "قالب"
+  },
+  "plugins": {
+    "title": "الإضافات",
+    "available": "الإضافات المتاحة",
+    "none_installed": "لا توجد إضافات مُثبتة",
+    "click_to_run": "اضغط لتنفيذ",
+    "instructions": "تعليمات",
+    "settings": "إعدادات",
+    "enabled": "فعّال",
+    "add_new_hint": "لإضافة إضافات جديدة، ضع المجلد في",
+    "load_failed": "فشل تحميل الإضافات",
+    "show_failed_with_error": "فشل عرض الإضافات: {message}",
+    "no_action_defined": "هذه الإضافة لا تحتوي على عملية محددة",
+    "toggle_failed": "فشل تعديل حالة الإضافة",
+    "confirm_reload_apply": "سيتم إعادة تحميل الصفحة لتطبيق التغييرات. هل تريد المتابعة؟",
+    "not_found": "لم يتم العثور على الإضافة",
+    "instructions_prefix": "تعليمات: ",
+    "instructions_show_failed": "فشل عرض التعليمات",
+    "not_loaded_yet": "الإضافة لم تُحمل بعد. تأكد من تفعيلها وأعد تحميل الصفحة",
+    "settings_show_failed_with_error": "فشل عرض الإعدادات: {message}"
+  },
+  "templates": {
+    "title": "قوالب"
+  },
+  "my_prompt": {
+    "add_new": "+ Add New Prompt",
+    "command_placeholder": "نص الأمر أو الوصف...",
+    "save_prompt": "Save Prompt",
+    "pick_image": "يرجى اختيار صورة",
+    "enter_text_or_command": "يرجى كتابة النص أو الأمر",
+    "saved_ok": "تم حفظ Prompt بنجاح",
+    "save_failed_with_error": "فشل حفظ القالب: {error}",
+    "save_failed": "فشل حفظ القالب",
+    "confirm_delete": "هل تريد حذف هذا القالب؟",
+    "delete_failed": "فشل الحذف"
+  },
+  "settings": {
+    "title": "إعدادات المستخدم",
+    "username": "اسم المستخدم:",
+    "language": "اللغة:",
+    "dark_mode": "⚫ الوضع الداكن",
+    "ollama_model": "🤖 نموذج OLLAMA:",
+    "show_lm_button": "👁️ إظهار زر LM",
+    "translate_lm_messages": "ترجمة رسائل LM",
+    "auto_translate_arabic_prompt": "الترجمة التلقائيه عربي الى انجليزي",
+    "login": "تسجيل دخول",
+    "delete_all_media": "حذف جميع الوسائط",
+    "confirm_delete_all_media": "سيتم حذف جميع الوسائط المذكورة في media_paths.txt لهذا المستخدم. هل أنت متأكد؟",
+    "delete_done": "تم الحذف.\nالمحذوف: {deleted}\nغير موجود: {missing}\nفشل: {failed}\n\nتم مسح الكاش أيضاً",
+    "delete_failed": "فشل الحذف: {message}"
+  },
+  "composer": {
+    "pos_neg": "إيجابي/سلبي",
+    "upload": "رفع ملف",
+    "type_here": "اكتب هنا …"
+  },
+  "chat": {
+    "edit": "تحرير",
+    "resend": "إعادة إرسال",
+    "edit_resend": "تعديل وإعادة إرسال",
+    "send_to_bar": "إرسال للبار",
+    "regen": "إعادة توليد",
+    "open_mask_editor": "فتح محرر الأقنعة",
+    "video_load_failed": "❌ تعذر تحميل الفيديو",
+    "no_text": "(بدون نص)",
+    "negative_prefix": "[سلبي] ",
+    "no_valid_images_for_message": "⚠️ لا توجد صور صالحة مرتبطة بهذه الرسالة أو الرسالة السابقة لها.",
+    "regen_http_failed": "❌ فشل إعادة التوليد (HTTP {status})",
+    "regen_failed_unexpected": "❌ فشل إعادة التوليد: خطأ غير متوقع."
+  },
+  "lm": {
+    "button_title": "LM: Chat with OLLAMA",
+    "button_active_title": "LM: Chat with OLLAMA (Active)",
+    "no_models_help": "❌ لم يتم العثور على النماذج.\n\nتأكد من:\n1. تشغيل OLLAMA (ollama serve)\n2. تثبيت نموذج (ollama pull tinyllama)\n3. الاتصال بالخادم",
+    "choose_model": "📚 اختر نموذج OLLAMA",
+    "no_models_install": "❌ لا توجد نماذج. قم بتثبيت: ollama pull tinyllama",
+    "error_with_status_help": "❌ OLLAMA Error {status}:\n\nتأكد من تشغيل OLLAMA:\nollama serve\n\nModel: {model}",
+    "error_details_help": "❌ OLLAMA Error:\n{error}\n\nتأكد من تشغيل OLLAMA وأن النموذج متوفر",
+    "no_valid_reply": "❓ لم أتلقَّ رداً صالحاً من OLLAMA",
+    "no_file_support": "ℹ️ وضع LM لا يدعم إرسال الملفات حالياً. سيتم تجاهل الملفات المرفقة."
+  },
+  "audio_trim": {
+    "title": "قص الصوت",
+    "start": "البداية:",
+    "end": "النهاية:",
+    "duration": "المدة المحددة:",
+    "preview": "معاينة المحدد",
+    "cancel": "بدون قص",
+    "apply": "قص"
+  },
+  "crop": {
+    "crop": "قص",
+    "no_crop": "بدون قص"
+  },
+  "edit": {
+    "edit_message": "تعديل الرسالة",
+    "send_with_same_files": "أرسل مع نفس الملفات",
+    "send_edited": "إرسال معدل"
+  },
+  "easy_tag": {
+    "enable_autocomplete": "تشغيل إكمال التاقات",
+    "merge_quality": "دمج تاقات الجودة",
+    "tags_file": "ملف التاقات:",
+    "chants_file": "ملف الـ Chants:"
+  },
+  "tags": {
+    "no_results": "لا توجد نتائج"
+  },
+  "uploader": {
+    "only_media_files": "يرجى سحب ملفات وسائط فقط (صور، فيديو، صوت)"
+  },
+  "mask": {
+    "editor_title": "🎨 محرر الأقنعة",
+    "open_editor_short": "🎨 محرر أقنعة",
+    "brush_size": "الحجم:",
+    "opacity": "الشفافية:",
+    "status_pick_image": "اختر صورة لتبدأ الرسم",
+    "zoom_in": "تكبير",
+    "zoom_out": "تصغير",
+    "zoom_reset": "إعادة تعيين",
+    "pan_mode": "وضع الحركة",
+    "soft_hard_brush": "فرشاة ناعمة/حادة",
+    "softness": "نعومة",
+    "eraser": "ممحاة",
+    "clear_all": "مسح الكل",
+    "invert": "عكس",
+    "brush_color": "لون الفرشاة",
+    "apply": "تطبيق",
+    "save_with_overlay": "حفظ مع التلوين",
+    "no_selected_image": "لا توجد صورة محددة",
+    "must_upload_image_first": "يجب رفع صورة أولاً",
+    "saved_with_overlay": "✓ تم الحفظ مع التلوين",
+    "select_image_to_edit": "اختر صورة لتحرير القناع",
+    "image_load_failed": "فشل تحميل الصورة",
+    "invalid_image": "صورة غير صحيحة"
+  }
+}

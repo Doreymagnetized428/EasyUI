@@ -1,0 +1,18 @@
+{
+  "id": "ui_shortcuts",
+  "name": "UI Shortcuts",
+  "name_en": "UI Shortcuts",
+  "description": "Keyboard shortcuts for the UI with full edit, enable, and disable control.",
+  "version": "1.0.0",
+  "author": "EasyUI Team",
+  "icon": "icon.svg",
+  "main": "plugin.js",
+  "enabled": true,
+  "type": "toggle",
+  "permissions": [
+    "ui",
+    "storage"
+  ],
+  "instructions": "This plugin lets you:\n\n• View all UI shortcuts\n• Edit any shortcut key\n• Enable or disable each shortcut\n• Reset all shortcuts to defaults\n\nOpen Settings to manage your shortcuts.",
+  "hasSettings": true
+}

@@ -1,0 +1,193 @@
+{
+  "common": {
+    "close": "关闭",
+    "cancel": "取消",
+    "select": "选择",
+    "save": "保存",
+    "loading": "⏳ 加载中...",
+    "no_files": "没有文件"
+  },
+  "errors": {
+    "connection": "服务器连接错误",
+    "connection_with_message": "❌ 连接错误:\n{message}\n\n请确认服务器可访问",
+    "cannot_connect_server": "❌ 无法连接到服务器。",
+    "unexpected": "发生意外错误。",
+    "unknown": "未知错误",
+    "with_message": "错误: {message}"
+  },
+  "languages": {
+    "ar": "阿拉伯语",
+    "en": "英语",
+    "zh": "中文",
+    "ja": "日语"
+  },
+  "loader": {
+    "restore_session": "正在加载上一次会话…",
+    "restoring_session": "正在恢复会话…"
+  },
+  "sessions": {
+    "title": "会话",
+    "new": "新建会话",
+    "clear_all": "清空全部",
+    "open": "打开",
+    "delete": "删除",
+    "none_saved": "没有已保存会话",
+    "none_guest": "访客没有会话",
+    "err_load": "加载会话失败",
+    "err_save_guest_settings": "无法为访客用户保存设置",
+    "err_save_settings": "保存设置失败",
+    "err_delete_guest": "无法删除访客会话",
+    "confirm_delete_one": "确定要删除这个会话吗？",
+    "err_delete_one": "删除会话失败",
+    "confirm_delete_all": "确定要删除所有会话吗？",
+    "err_cleanup_guest": "无法清理访客文件",
+    "cleanup_ok": "文件清理成功",
+    "cleanup_failed": "文件清理失败",
+    "err_new_guest": "无法为访客创建会话",
+    "err_login_guest": "无法以访客身份登录"
+  },
+  "favorites": {
+    "title": "收藏模板",
+    "added": "模板已加入收藏",
+    "none_added": "收藏中还没有模板。",
+    "confirm_remove_one": "确定要从收藏中移除此模板吗？",
+    "add_to_favorites": "加入收藏",
+    "remove_from_favorites": "从收藏移除",
+    "template_fallback": "模板"
+  },
+  "plugins": {
+    "title": "插件",
+    "available": "可用插件",
+    "none_installed": "未安装任何插件",
+    "click_to_run": "点击运行",
+    "instructions": "说明",
+    "settings": "设置",
+    "enabled": "已启用",
+    "add_new_hint": "添加新插件，请将文件夹放到",
+    "load_failed": "插件加载失败",
+    "show_failed_with_error": "显示插件失败: {message}",
+    "no_action_defined": "该插件未定义任何操作",
+    "toggle_failed": "切换插件状态失败",
+    "confirm_reload_apply": "页面将重新加载以应用更改。是否继续？",
+    "not_found": "未找到插件",
+    "instructions_prefix": "说明: ",
+    "instructions_show_failed": "显示说明失败",
+    "not_loaded_yet": "插件尚未加载。请启用后刷新页面",
+    "settings_show_failed_with_error": "显示设置失败: {message}"
+  },
+  "templates": {
+    "title": "模板"
+  },
+  "my_prompt": {
+    "add_new": "+ 添加新提示",
+    "command_placeholder": "命令文本或说明...",
+    "save_prompt": "保存提示",
+    "pick_image": "请选择一张图片",
+    "enter_text_or_command": "请输入文本或命令",
+    "saved_ok": "提示保存成功",
+    "save_failed_with_error": "保存模板失败: {error}",
+    "save_failed": "保存模板失败",
+    "confirm_delete": "要删除这个模板吗？",
+    "delete_failed": "删除失败"
+  },
+  "settings": {
+    "title": "用户设置",
+    "username": "用户名:",
+    "language": "语言:",
+    "dark_mode": "⚫ 深色模式",
+    "ollama_model": "🤖 OLLAMA 模型:",
+    "show_lm_button": "👁️ 显示 LM 按钮",
+    "translate_lm_messages": "翻译 LM 消息",
+    "auto_translate_arabic_prompt": "自动翻译（阿拉伯语→英语）",
+    "login": "登录",
+    "delete_all_media": "删除所有媒体",
+    "confirm_delete_all_media": "将删除该用户 media_paths.txt 中列出的所有媒体。确定吗？",
+    "delete_done": "已删除。\n已删: {deleted}\n缺失: {missing}\n失败: {failed}\n\n缓存也已清除",
+    "delete_failed": "删除失败: {message}"
+  },
+  "composer": {
+    "pos_neg": "正向/负向",
+    "upload": "上传文件",
+    "type_here": "在这里输入 …"
+  },
+  "chat": {
+    "edit": "编辑",
+    "resend": "重新发送",
+    "edit_resend": "编辑并重发",
+    "send_to_bar": "发送到栏",
+    "regen": "重新生成",
+    "open_mask_editor": "打开蒙版编辑器",
+    "video_load_failed": "❌ 视频加载失败",
+    "no_text": "（无文本）",
+    "negative_prefix": "[负向] ",
+    "no_valid_images_for_message": "⚠️ 此消息或前一条消息没有有效图片。",
+    "regen_http_failed": "❌ 重新生成失败（HTTP {status}）",
+    "regen_failed_unexpected": "❌ 重新生成失败：未知错误。"
+  },
+  "lm": {
+    "button_title": "LM: 与 OLLAMA 聊天",
+    "button_active_title": "LM: 与 OLLAMA 聊天（已启用）",
+    "no_models_help": "❌ 未找到模型。\n\n请确认:\n1. OLLAMA 已运行 (ollama serve)\n2. 已安装模型 (ollama pull tinyllama)\n3. 可连接服务器",
+    "choose_model": "📚 选择 OLLAMA 模型",
+    "no_models_install": "❌ 未找到模型。请先安装: ollama pull tinyllama",
+    "error_with_status_help": "❌ OLLAMA 错误 {status}:\n\n请确认 OLLAMA 正在运行:\nollama serve\n\n模型: {model}",
+    "error_details_help": "❌ OLLAMA 错误:\n{error}\n\n请确认 OLLAMA 正在运行且模型存在",
+    "no_valid_reply": "❓ 未收到 OLLAMA 的有效回复",
+    "no_file_support": "ℹ️ LM 模式当前不支持文件上传。已附加文件将被忽略。"
+  },
+  "audio_trim": {
+    "title": "修剪音频",
+    "start": "开始:",
+    "end": "结束:",
+    "duration": "已选时长:",
+    "preview": "预览所选",
+    "cancel": "不修剪",
+    "apply": "修剪"
+  },
+  "crop": {
+    "crop": "裁剪",
+    "no_crop": "不裁剪"
+  },
+  "edit": {
+    "edit_message": "编辑消息",
+    "send_with_same_files": "使用相同文件发送",
+    "send_edited": "发送已编辑"
+  },
+  "easy_tag": {
+    "enable_autocomplete": "启用标签自动补全",
+    "merge_quality": "合并质量标签",
+    "tags_file": "标签文件:",
+    "chants_file": "咒语文件:"
+  },
+  "tags": {
+    "no_results": "无结果"
+  },
+  "uploader": {
+    "only_media_files": "请仅拖放媒体文件（图片、视频、音频）"
+  },
+  "mask": {
+    "editor_title": "🎨 蒙版编辑器",
+    "open_editor_short": "🎨 蒙版编辑器",
+    "brush_size": "大小:",
+    "opacity": "不透明度:",
+    "status_pick_image": "选择一张图片开始绘制",
+    "zoom_in": "放大",
+    "zoom_out": "缩小",
+    "zoom_reset": "重置视图",
+    "pan_mode": "平移模式",
+    "soft_hard_brush": "软/硬画笔",
+    "softness": "柔和度",
+    "eraser": "橡皮擦",
+    "clear_all": "清空",
+    "invert": "反转",
+    "brush_color": "画笔颜色",
+    "apply": "应用",
+    "save_with_overlay": "保存并叠加",
+    "no_selected_image": "未选择图片",
+    "must_upload_image_first": "请先上传图片",
+    "saved_with_overlay": "✓ 已保存并叠加",
+    "select_image_to_edit": "选择要编辑蒙版的图片",
+    "image_load_failed": "加载图片失败",
+    "invalid_image": "无效图片"
+  }
+}

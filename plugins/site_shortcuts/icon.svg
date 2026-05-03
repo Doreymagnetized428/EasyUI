@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="64" height="64">
+  <!-- خلفية -->
+  <rect width="200" height="120" fill="#10a37f" rx="8"/>
+  
+  <!-- لوحة المفاتيح -->
+  <rect x="20" y="20" width="160" height="80" fill="#1e1e1e" rx="4" stroke="#333" stroke-width="2"/>
+  
+  <!-- صفوف المفاتيح -->
+  <!-- الصف الأول -->
+  <g>
+    <rect x="25" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="42" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="59" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="76" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="93" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="110" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="127" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="144" y="25" width="12" height="12" fill="#444" rx="2"/>
+    <rect x="161" y="25" width="12" height="12" fill="#444" rx="2"/>
+  </g>
+  
+  <!-- الصف الثاني -->
+  <g>
+    <rect x="25" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="42" y="44" width="12" height="12" fill="#10a37f" rx="2" stroke="#0d7a5f" stroke-width="1"/>
+    <text x="48" y="52" font-size="8" font-weight="bold" fill="#fff" text-anchor="middle">C</text>
+    <rect x="59" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="76" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="93" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="110" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="127" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="144" y="44" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="161" y="44" width="12" height="12" fill="#555" rx="2"/>
+  </g>
+  
+  <!-- الصف الثالث -->
+  <g>
+    <rect x="25" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="42" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="59" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="76" y="63" width="12" height="12" fill="#10a37f" rx="2" stroke="#0d7a5f" stroke-width="1"/>
+    <text x="82" y="71" font-size="8" font-weight="bold" fill="#fff" text-anchor="middle">+</text>
+    <rect x="93" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="110" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="127" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="144" y="63" width="12" height="12" fill="#555" rx="2"/>
+    <rect x="161" y="63" width="12" height="12" fill="#555" rx="2"/>
+  </g>
+  
+  <!-- مفتاح المسافة -->
+  <rect x="25" y="82" width="148" height="12" fill="#555" rx="2"/>
+  <text x="99" y="90" font-size="7" fill="#999" text-anchor="middle">SPACE</text>
+</svg>

@@ -1,0 +1,18 @@
+{
+  "id": "multi_angle_control",
+  "name": "Multi-Angle Control",
+  "name_en": "Multi-Angle Control",
+  "description": "3D camera angle picker with quick presets and direct send to chat",
+  "version": "1.0.0",
+  "author": "EasyUI Team",
+  "icon": "icon.svg",
+  "main": "plugin.js",
+  "enabled": true,
+  "type": "action",
+  "permissions": [
+    "ui",
+    "chat"
+  ],
+  "instructions": "This plugin opens a 3D camera angle editor with quick presets and precision controls. Click the plugin to open, adjust the angle, and press send to push the prompt into chat.",
+  "hasSettings": false
+}

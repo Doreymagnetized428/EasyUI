@@ -1,0 +1,193 @@
+{
+  "common": {
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "select": "選択",
+    "save": "保存",
+    "loading": "⏳ 読み込み中...",
+    "no_files": "ファイルがありません"
+  },
+  "errors": {
+    "connection": "サーバー接続エラー",
+    "connection_with_message": "❌ 接続エラー:\n{message}\n\nサーバーに接続できることを確認してください",
+    "cannot_connect_server": "❌ サーバーに接続できません。",
+    "unexpected": "予期しないエラーが発生しました。",
+    "unknown": "不明なエラー",
+    "with_message": "エラー: {message}"
+  },
+  "languages": {
+    "ar": "アラビア語",
+    "en": "英語",
+    "zh": "中国語",
+    "ja": "日本語"
+  },
+  "loader": {
+    "restore_session": "前回のセッションを読み込み中…",
+    "restoring_session": "セッションを復元中…"
+  },
+  "sessions": {
+    "title": "セッション",
+    "new": "新しいセッション",
+    "clear_all": "すべて削除",
+    "open": "開く",
+    "delete": "削除",
+    "none_saved": "保存されたセッションはありません",
+    "none_guest": "ゲストのセッションはありません",
+    "err_load": "セッションの読み込みに失敗しました",
+    "err_save_guest_settings": "ゲストユーザーの設定は保存できません",
+    "err_save_settings": "設定の保存に失敗しました",
+    "err_delete_guest": "ゲストのセッションは削除できません",
+    "confirm_delete_one": "このセッションを削除してもよろしいですか？",
+    "err_delete_one": "セッションの削除に失敗しました",
+    "confirm_delete_all": "すべてのセッションを削除してもよろしいですか？",
+    "err_cleanup_guest": "ゲストのファイルはクリーンアップできません",
+    "cleanup_ok": "ファイルを正常にクリーンアップしました",
+    "cleanup_failed": "ファイルのクリーンアップに失敗しました",
+    "err_new_guest": "ゲスト用セッションを作成できません",
+    "err_login_guest": "guest としてログインできません"
+  },
+  "favorites": {
+    "title": "お気に入りテンプレート",
+    "added": "テンプレートをお気に入りに追加しました",
+    "none_added": "お気に入りにテンプレートがありません。",
+    "confirm_remove_one": "このテンプレートをお気に入りから削除しますか？",
+    "add_to_favorites": "お気に入りに追加",
+    "remove_from_favorites": "お気に入りから削除",
+    "template_fallback": "テンプレート"
+  },
+  "plugins": {
+    "title": "プラグイン",
+    "available": "利用可能なプラグイン",
+    "none_installed": "インストール済みプラグインはありません",
+    "click_to_run": "クリックして実行",
+    "instructions": "説明",
+    "settings": "設定",
+    "enabled": "有効",
+    "add_new_hint": "新しいプラグインを追加するには、フォルダを次に配置してください",
+    "load_failed": "プラグインの読み込みに失敗しました",
+    "show_failed_with_error": "プラグインの表示に失敗しました: {message}",
+    "no_action_defined": "このプラグインには定義されたアクションがありません",
+    "toggle_failed": "プラグイン状態の変更に失敗しました",
+    "confirm_reload_apply": "変更を適用するためページを再読み込みします。続行しますか？",
+    "not_found": "プラグインが見つかりません",
+    "instructions_prefix": "説明: ",
+    "instructions_show_failed": "説明の表示に失敗しました",
+    "not_loaded_yet": "プラグインがまだ読み込まれていません。有効化してページを再読み込みしてください",
+    "settings_show_failed_with_error": "設定の表示に失敗しました: {message}"
+  },
+  "templates": {
+    "title": "テンプレート"
+  },
+  "my_prompt": {
+    "add_new": "+ 新しいプロンプトを追加",
+    "command_placeholder": "コマンド文または説明...",
+    "save_prompt": "プロンプトを保存",
+    "pick_image": "画像を選択してください",
+    "enter_text_or_command": "テキストまたはコマンドを入力してください",
+    "saved_ok": "プロンプトを保存しました",
+    "save_failed_with_error": "テンプレート保存に失敗: {error}",
+    "save_failed": "テンプレートの保存に失敗しました",
+    "confirm_delete": "このテンプレートを削除しますか？",
+    "delete_failed": "削除に失敗しました"
+  },
+  "settings": {
+    "title": "ユーザー設定",
+    "username": "ユーザー名:",
+    "language": "言語:",
+    "dark_mode": "⚫ ダークモード",
+    "ollama_model": "🤖 OLLAMA モデル:",
+    "show_lm_button": "👁️ LM ボタンを表示",
+    "translate_lm_messages": "LM メッセージを翻訳",
+    "auto_translate_arabic_prompt": "自動翻訳（アラビア語→英語）",
+    "login": "ログイン",
+    "delete_all_media": "すべてのメディアを削除",
+    "confirm_delete_all_media": "このユーザーの media_paths.txt にある全メディアを削除します。よろしいですか？",
+    "delete_done": "削除完了。\n削除: {deleted}\n未存在: {missing}\n失敗: {failed}\n\nキャッシュもクリアされました",
+    "delete_failed": "削除に失敗: {message}"
+  },
+  "composer": {
+    "pos_neg": "ポジティブ/ネガティブ",
+    "upload": "ファイルをアップロード",
+    "type_here": "ここに入力 …"
+  },
+  "chat": {
+    "edit": "編集",
+    "resend": "再送",
+    "edit_resend": "編集して再送",
+    "send_to_bar": "バーへ送信",
+    "regen": "再生成",
+    "open_mask_editor": "マスクエディタを開く",
+    "video_load_failed": "❌ 動画の読み込みに失敗しました",
+    "no_text": "（テキストなし）",
+    "negative_prefix": "[ネガティブ] ",
+    "no_valid_images_for_message": "⚠️ このメッセージまたは前のメッセージに有効な画像がありません。",
+    "regen_http_failed": "❌ 再生成に失敗しました（HTTP {status}）",
+    "regen_failed_unexpected": "❌ 再生成に失敗しました: 予期しないエラー。"
+  },
+  "lm": {
+    "button_title": "LM: OLLAMA とチャット",
+    "button_active_title": "LM: OLLAMA とチャット（有効）",
+    "no_models_help": "❌ モデルが見つかりません。\n\n確認事項:\n1. OLLAMA が起動中 (ollama serve)\n2. モデルがインストール済み (ollama pull tinyllama)\n3. サーバー接続が可能",
+    "choose_model": "📚 OLLAMA モデルを選択",
+    "no_models_install": "❌ モデルが見つかりません。インストールしてください: ollama pull tinyllama",
+    "error_with_status_help": "❌ OLLAMA エラー {status}:\n\nOLLAMA が起動していることを確認:\nollama serve\n\nモデル: {model}",
+    "error_details_help": "❌ OLLAMA エラー:\n{error}\n\nOLLAMA が起動中で、モデルが存在することを確認してください",
+    "no_valid_reply": "❓ OLLAMA から有効な返信を受信できませんでした",
+    "no_file_support": "ℹ️ LM モードは現在ファイルアップロードに対応していません。添付ファイルは無視されます。"
+  },
+  "audio_trim": {
+    "title": "音声をトリミング",
+    "start": "開始:",
+    "end": "終了:",
+    "duration": "選択した長さ:",
+    "preview": "選択をプレビュー",
+    "cancel": "トリミングなし",
+    "apply": "トリミング"
+  },
+  "crop": {
+    "crop": "トリミング",
+    "no_crop": "トリミングなし"
+  },
+  "edit": {
+    "edit_message": "メッセージを編集",
+    "send_with_same_files": "同じファイルで送信",
+    "send_edited": "編集内容を送信"
+  },
+  "easy_tag": {
+    "enable_autocomplete": "タグ自動補完を有効化",
+    "merge_quality": "品質タグを統合",
+    "tags_file": "タグファイル:",
+    "chants_file": "Chants ファイル:"
+  },
+  "tags": {
+    "no_results": "結果なし"
+  },
+  "uploader": {
+    "only_media_files": "メディアファイルのみドロップしてください（画像・動画・音声）"
+  },
+  "mask": {
+    "editor_title": "🎨 マスクエディタ",
+    "open_editor_short": "🎨 マスクエディタ",
+    "brush_size": "サイズ:",
+    "opacity": "不透明度:",
+    "status_pick_image": "描画を開始する画像を選択してください",
+    "zoom_in": "ズームイン",
+    "zoom_out": "ズームアウト",
+    "zoom_reset": "表示をリセット",
+    "pan_mode": "パンモード",
+    "soft_hard_brush": "ソフト/ハードブラシ",
+    "softness": "柔らかさ",
+    "eraser": "消しゴム",
+    "clear_all": "すべてクリア",
+    "invert": "反転",
+    "brush_color": "ブラシ色",
+    "apply": "適用",
+    "save_with_overlay": "オーバーレイ付きで保存",
+    "no_selected_image": "画像が選択されていません",
+    "must_upload_image_first": "先に画像をアップロードしてください",
+    "saved_with_overlay": "✓ オーバーレイ付きで保存しました",
+    "select_image_to_edit": "マスクを編集する画像を選択",
+    "image_load_failed": "画像の読み込みに失敗しました",
+    "invalid_image": "無効な画像です"
+  }
+}

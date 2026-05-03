@@ -1,0 +1,12 @@
+# workflow_requirements.yml
+
+edit:
+  nodes:
+    75:74:
+      inputs:
+        text: positive
+    '76':
+      inputs:
+        image: image
+    '9':
+      save: true

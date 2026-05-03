@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EasyUi</title>
+  <style>
+    /* ===== الأساسيات ===== */
+    :root {
+      --bg-primary: #fff;
+      --bg-secondary: #f4f4f4;
+      --bg-tertiary: #fafafa;
+      --text-primary: #333;
+      --text-secondary: #666;
+      --border-color: #dbdbdb;
+      --border-light: #e6e6e6;
+      --shadow-color: rgba(0,0,0,0.1);
+      --bubble-user: #e3f2ec;
+      --bubble-user-text: #064e3b;
+      --bubble-assistant: #fafafa;
+      --bubble-assistant-border: #e6e6e6;
+      --bubble-assistant-text: #212121;
+      --input-bg: #fff;
+      --menu-bg: #fff;
+      --hover-bg: #f5f5f5;
+    }
+    
+    body.dark-mode {
+      --bg-primary: #1a1a1a;
+      --bg-secondary: #2d2d2d;
+      --bg-tertiary: #252525;
+      --text-primary: #e0e0e0;
+      --text-secondary: #b0b0b0;
+      --border-color: #404040;
+      --border-light: #353535;
+      --shadow-color: rgba(0,0,0,0.5);
+      --bubble-user: #1e4d3a;
+      --bubble-user-text: #a7f3d0;
+      --bubble-assistant: #2d2d2d;
+      --bubble-assistant-border: #404040;
+      --bubble-assistant-text: #e0e0e0;
+      --input-bg: #2d2d2d;
+      --menu-bg: #252525;
+      --hover-bg: #333;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body, html {
+      height: 100%;
+      font-family: sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* زرّ اختيار الفرع */
+    #modeWrap {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+    }
+    #modeBtn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    #modeMenu {
+      display: none;
+      position: absolute;
+      top: 46px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid #dbdbdb;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px #0003;
+    }
+    #modeMenu div {
+      padding: 10px 22px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    #modeMenu div:hover {
+      background: #f2f2f2;
+    }
+
+    /* منطقة الدردشة */
+    #chat {
+      padding: 90px 20px 94px;
+      max-width: 850px;
+      margin: auto;
+      height: 100%;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .msg {
+      max-width: 75%;
+      display: flex;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .user {
+      align-self: flex-end;
+      justify-content: flex-end;
+    }
+    .assistant {
+      align-self: flex-start;
+      justify-content: flex-start;
+    }
+    .bubble {
+      position: relative;
+      padding: 12px 16px;
+      border-radius: 18px 18px 4px 18px;
+      background: var(--bubble-user);
+      color: var(--bubble-user-text);
+      white-space: pre-wrap;
+      word-break: break-word;
+      box-shadow: 0 2px 6px var(--shadow-color);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .assistant .bubble {
+      background: var(--bubble-assistant);
+      border: 1px solid var(--bubble-assistant-border);
+      color: var(--bubble-assistant-text);
+      border-radius: 18px 18px 18px 4px;
+      padding: 4px 4px 36px;
+    }
+    .bubble img, .bubble video {
+      max-width: 100%;
+      max-height: 400px;
+      border-radius: 12px;
+      object-fit: contain;
+      cursor: zoom-in;
+    }
+    .bubble audio {
+      width: 100%;
+      min-width: 250px;
+    }
+
+    /* زر إعادة توليد المساعد */
+    .regen-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37fcc;
+      color: #fff;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 6px #10a37faa;
+    }
+    .regen-btn:hover {
+      background: #10a37f;
+    }
+
+    /* زر إعادة الإرسال للمستخدم */
+    .user-regen-btn {
+      position: absolute;
+      top: -14px;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 50%;
+      background: #8888;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 4px #0004;
+    }
+    .user-regen-btn:hover {
+      background: #666;
+    }
+
+    /* زر تحرير (قلم) للمستخدم */
+    .user-edit-btn {
+      position: absolute;
+      top: -14px;
+      right: 40px; /* إلى يسار زر الإعادة */
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 50%;
+      background: #ffa726cc;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 4px #0004;
+    }
+    .user-edit-btn:hover {
+      background: #fb8c00;
+    }
+
+    /* سبينر دوار */
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 4px solid #e6e6e6;
+      border-top-color: #10a37f;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    /* فقاعة انتظار بدون ظل ونص */
+    .wait-bubble .bubble {
+      padding: 12px;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    /* ===== composer + زر التبديل ===== */
+    #composerWrap {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      transition: bottom .25s ease;
+      z-index: 120;
+      width: calc(100% - 32px);
+      max-width: 850px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #composer {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 26px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px var(--shadow-color);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    #composer.drag-over {
+      border-color: #10a37f;
+      box-shadow: 0 0 0 3px #10a37f44, 0 4px 12px #0002;
+      background: #f0fff8;
+    }
+    .icon-btn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #666;
+    }
+    .icon-btn:hover {
+      background: #f4f4f4;
+    }
+    #mainInput {
+      flex: 1;
+      min-height: 34px;
+      height: 34px;
+      max-height: calc(1.5em * 7 + 12px);
+      resize: none;
+      overflow-y: auto;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--text-primary);
+      cursor: text;
+      padding: 5px 0;
+    }
+    #sendBtn {
+      width: 34px;
+      height: 34px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      cursor: pointer;
+    }
+    #sendBtn:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+    #tplToggle {
+      width: 110px;
+      height: 20px;
+      border: none;
+      border-radius: 0 0 10px 10px;
+      background: #10a37f;
+      color: #fff;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 3px;
+      box-shadow: 0 2px 6px #0002;
+    }
+
+    /* رفع ملف */
+    #fileInput {
+      display: none;
+    }
+    #filePreviews {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .file-preview {
+      position: relative;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 4px;
+      background: #f9f9f9;
+    }
+    .file-preview img, .file-preview video {
+      max-width: 60px;
+      max-height: 60px;
+      border-radius: 4px;
+    }
+    .file-preview .file-info {
+      font-size: 10px;
+      text-align: center;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 60px;
+    }
+    .file-preview .remove-btn {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #f44336;
+      color: white;
+      border: none;
+      font-size: 10px;
+      cursor: pointer;
+    }
+    .file-preview .crop-btn {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #2196F3;
+      color: white;
+      border: none;
+      font-size: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .file-preview .crop-btn:hover {
+      background: #1976D2;
+    }
+    .audio-preview {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f0f0;
+      border-radius: 4px;
+    }
+    .audio-preview::before {
+      content: "🔊";
+      font-size: 24px;
+    }
+
+    /* ===== شريط القوالب ===== */
+    #templatesRow {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+      background: #f4f4f4e6;
+      box-shadow: 0 -2px 8px #0002;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-height: 0;
+      transition: max-height .25s ease;
+      z-index: 110;
+    }
+    #templatesRow.open {
+      max-height: 130px;
+    }
+    #templatesSlider {
+      display: flex;
+      gap: 22px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+      padding: 14px;
+    }
+    .template-btn {
+      width: 90px;
+      height: 90px;
+      border: 2px solid #e6e6e6;
+      border-radius: 16px;
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: border .2s, box-shadow .2s;
+    }
+    .template-btn img {
+      width: 78px;
+      height: 78px;
+      border-radius: 14px;
+      object-fit: cover;
+    }
+    .template-btn.selected {
+      border: 3px solid #10a37f;
+      box-shadow: 0 0 0 2px #10a37f55;
+    }
+    .template-btn.folder::after {
+      content: "📂";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      font-size: 18px;
+    }
+    .template-btn .tick {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: bold;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px #10a37f66;
+    }
+
+    /* ===== Lightbox ===== */
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+    }
+    #lightbox.open {
+      display: flex;
+    }
+    #lightbox img, #lightbox video {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      cursor: zoom-out;
+      transition: transform .2s ease;
+    }
+    #lightbox .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      padding: 0 20px;
+      user-select: none;
+    }
+    #lightbox .nav.prev {
+      left: 10px;
+    }
+    #lightbox .nav.next {
+      right: 10px;
+    }
+    #lightbox .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* ===== نافذة القص ===== */
+    #cropModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 250;
+    }
+    #cropModal.open {
+      display: flex;
+    }
+    #cropBox {
+      background: #fff;
+      padding: 8px;
+      border-radius: 10px;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #cropCanvas {
+      max-width: 80vw;
+      max-height: 70vh;
+      border: 1px solid #ccc;
+      touch-action: none;
+      cursor: crosshair;
+    }
+    .crop-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .crop-actions button {
+      min-width: 80px;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .crop-ok {
+      background: #10a37f;
+      color: #fff;
+    }
+    .crop-mask {
+      background: #ff9800;
+      color: #fff;
+    }
+    .crop-mask:hover {
+      background: #f57c00;
+    }
+    .crop-cancel {
+      background: #999;
+      color: #fff;
+    }
+
+    /* ===== مودال مجلدات القوالب ===== */
+    #tplFolderModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 260;
+    }
+    #tplFolderModal.open {
+      display: flex;
+    }
+    #tplFolderBox {
+      background: #fff;
+      max-width: 90vw;
+      max-height: 90vh;
+      overflow: auto;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #0008;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #tplFolderHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    #tplFolderHeader h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    #tplFolderClose {
+      background: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 14px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    #tplFolderGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px,1fr));
+      gap: 16px;
+      width: 100%;
+    }
+    .tpl-folder-item {
+      border: 2px solid #e6e6e6;
+      border-radius: 12px;
+      background: #eee;
+      padding: 4px;
+      cursor: pointer;
+      position: relative;
+      transition: border .2s, box-shadow .2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 4px;
+    }
+    .tpl-folder-item:hover {
+      border-color: #10a37f;
+      box-shadow: 0 0 0 2px #10a37f44;
+    }
+    .tpl-folder-item img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 8px;
+      background: #ddd;
+    }
+    .tpl-folder-item .lbl {
+      font-size: 13px;
+      text-align: center;
+      color: #333;
+      padding: 2px 4px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tpl-folder-item.selected::after {
+      content: "✔";
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 8px #10a37f66;
+    }
+
+    /* ===== مودال تعديل رسالة ===== */
+    #editMsgModal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,.65);
+      z-index: 400;
+    }
+    #editMsgBox {
+      background: #fff;
+      max-width: 90vw;
+      width: 420px;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px #0008;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    #editMsgBox h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    #editMsgInput {
+      width: 100%;
+      resize: vertical;
+      font-size: 1rem;
+      padding: 8px;
+      rows: 4;
+    }
+    #editMsgIncludeImgs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .95rem;
+    }
+    #editMsgIncludeImgs input {
+      margin: 0;
+    }
+    #editMsgCancel {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #999;
+      color: #fff;
+      cursor: pointer;
+    }
+    #editMsgSend {
+      padding: 6px 16px;
+      border: none;
+      border-radius: 6px;
+      background: #10a37f;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ===== أزرار المستخدمين والجلسات ===== */
+    .user-menu-btn {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sessions-menu-btn {
+      position: fixed;
+      top: 18px;
+      left: 18px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .user-menu, .sessions-menu {
+      position: fixed;
+      top: 62px;
+      width: 300px;
+      max-height: 70vh;
+      background: var(--menu-bg);
+      border-radius: 10px;
+      box-shadow: 0 4px 12px var(--shadow-color);
+      z-index: 210;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background-color 0.3s ease;
+    }
+    .user-menu {
+      right: 18px;
+    }
+    .sessions-menu {
+      left: 18px;
+    }
+    .menu-header {
+      padding: 12px 16px;
+      background: #10a37f;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .menu-close {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .menu-content {
+      padding: 12px;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .menu-item {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .menu-item:hover {
+      background: var(--hover-bg);
+    }
+    .menu-item.active {
+      background: #e3f2ec;
+    }
+    .menu-item .icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu-item .label {
+      flex: 1;
+    }
+    .menu-item .badge {
+      background: #10a37f;
+      color: #fff;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+    .menu-footer {
+      padding: 12px;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .menu-footer button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background: #10a37f;
+      color: #fff;
+      cursor: pointer;
+    }
+    .settings-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .settings-form label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .settings-form input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .settings-form input[type="checkbox"] {
+      margin: 0;
+    }
+    .settings-form select {
+      padding: 6px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .session-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .session-item {
+      padding: 10px;
+      border: 1px solid #eee;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .session-item:hover {
+      background: #f5f5f5;
+    }
+    .session-item.active {
+      background: #e3f2ec;
+      border-color: #10a37f;
+    }
+    .session-item .date {
+      font-size: 12px;
+      color: #666;
+    }
+    .session-item .preview {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .session-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .session-actions button {
+      padding: 4px 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .session-load {
+      background: #10a37f;
+      color: #fff;
+    }
+    .session-delete {
+      background: #f44336;
+      color: #fff;
+    }
+    .favorite-templates {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .favorite-template {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #e6e6e6;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .favorite-template img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .favorite-template .remove {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      width: 16px;
+      height: 16px;
+      background: #f44336;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .favorite-template:hover .remove {
+      opacity: 1;
+    }
+  
+    .favorites-menu-btn {
+      position: fixed;
+      top: 66px; /* تحت زر الجلسات مباشرة */
+      left: 18px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ===== محرر الأقنعة ===== */
+    #maskEditorModal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 350;
+    }
+    #maskEditorModal.open {
+      display: flex;
+    }
+    #maskEditorBox {
+      background: #fff;
+      padding: 6px;
+      border-radius: 8px;
+      max-width: 95vw;
+      max-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 4px 20px #0008;
+      overflow: hidden;
+    }
+    #maskEditorContent {
+      display: flex;
+      gap: 10px;
+      flex: 1;
+      min-height: 0;
+    }
+    #maskEditorMain {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      position: relative;
+    }
+    #maskEditorHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e6e6e6;
+    }
+    #maskEditorHeader h3 {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+    }
+    #maskEditorClose {
+      background: #f44336;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      line-height: 1;
+    }
+    #maskEditorClose:hover {
+      background: #d32f2f;
+    }
+    #maskCanvas {
+      border: 1px solid #ccc;
+      cursor: crosshair;
+      background: #fff;
+      max-width: 70vw;
+      max-height: 70vh;
+      display: block;
+      touch-action: none;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    #maskEditorTopBar {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 6px;
+      background: #f5f5f5;
+      border-radius: 6px;
+      flex-wrap: nowrap; /* إبقِ الأدوات في صف واحد */
+      overflow: hidden;
+    }
+    #maskEditorSidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      min-width: 70px;
+      align-items: center;
+    }
+    .mask-tool-btn {
+      width: 32px;
+      height: 32px;
+      border: 1px solid #ddd;
+      border-radius: 50%;
+      background: #fff;
+      color: #333;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      padding: 0;
+    }
+    .mask-tool-btn:hover {
+      background: #f0f0f0;
+      border-color: #10a37f;
+      transform: scale(1.05);
+    }
+    .mask-tool-btn.active {
+      background: #10a37f;
+      color: #fff;
+      border-color: #10a37f;
+    }
+    .mask-tool-group {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      color: #666;
+    }
+    .mask-tool-group span {
+      display: inline-block;
+      min-width: 32px; /* تثبيت عرض القيم لمنع دفع الأدوات الأخرى */
+      text-align: center;
+    }
+    .mask-tool-group input[type="range"] {
+      width: 70px;
+      height: 3px;
+    }
+    .mask-tool-group label {
+      font-size: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    #maskStatus {
+      text-align: center;
+      font-size: 11px;
+      color: #666;
+      padding: 4px 8px;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+    .mask-action-btn {
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .mask-action-btn.cancel {
+      background: #999;
+      color: #fff;
+    }
+    .mask-action-btn.cancel:hover {
+      background: #777;
+      transform: scale(1.05);
+    }
+    .mask-action-btn.apply {
+      background: #10a37f;
+      color: #fff;
+    }
+    .mask-action-btn.apply:hover {
+      background: #0d8b6f;
+      transform: scale(1.05);
+    }
+
+
+  </style>
+</head>
+<body>
+
+<div id="sessionLoader" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:9999">
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:14px 16px;border-radius:12px;box-shadow:0 10px 30px #0003;min-width:240px;text-align:center">
+    <div class="spinner" style="width:28px;height:28px;border:3px solid #e5e7eb;border-top-color:#10a37f;border-radius:50%;margin:6px auto 10px;animation:spin 1s linear infinite"></div>
+    <div style="font-size:.95rem;color:#111" data-i18n="loader.restore_session">جاري تحميل الجلسة السابقة…</div>
+  </div>
+</div>
+<div id="pageCredit" style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(6px + env(safe-area-inset-bottom, 0px));font-size:10px;color:#c7ced8;text-shadow:none;background:transparent;padding:0;border-radius:0;z-index:300;pointer-events:none;user-select:none;white-space:nowrap;opacity:1;">EasyUi base created by kigy</div>
+<style>@keyframes spin{to{transform:rotate(360deg)}}
+    .favorites-menu-btn {
+      position: fixed;
+      top: 66px; /* تحت زر الجلسات مباشرة */
+      left: 18px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: #10a37f;
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+  </style>
+
+  <!-- زر الفرع -->
+  <div id="modeWrap">
+    <button id="modeBtn">+</button>
+    <div id="modeMenu">
+      <div data-mode="Main">Main</div>
+      <div data-mode="Fast">Fast</div>
+      <div data-mode="High">High</div>
+    </div>
+  </div>
+
+  <!-- زر الجلسات -->
+  <button class="sessions-menu-btn" title="سجل الجلسات" data-i18n-title="sessions.title">📋</button>
+
+  <!-- زر القوالب المفضلة (أسفل زر الجلسات) -->
+  <button class="favorites-menu-btn" title="القوالب المفضلة" aria-label="القوالب المفضلة" data-i18n-title="favorites.title" data-i18n-aria-label="favorites.title"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 6.01 4.01 4 6.5 4c1.73 0 3.36.9 4.3 2.34C11.74 4.9 13.37 4 15.1 4 17.59 4 19.6 6.01 19.6 8.5c0 3.78-3.4 6.86-8.55 11.53L12 21.35z" fill="#3d3d3d" stroke="#3d3d3d" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg></button>
+
+  <!-- زر My Prompt (أسفل القوالب المفضلة) -->
+  <button id="customTemplatesBtn" class="favorites-menu-btn" title="My Prompt" aria-label="My Prompt" style="top: 114px;">P</button>
+
+  <!-- زر الإضافات (أسفل My Prompt) -->
+  <button onclick="window.showPluginsDialog()" class="favorites-menu-btn" title="الإضافات" aria-label="Plugins" data-i18n-title="plugins.title" data-i18n-aria-label="plugins.title" style="top: 162px; background: #10a37f; color: white; font-size: 18px;">⚒</button>
+
+  <!-- modal القوالب المخصصة -->
+  <div id="customTemplatesModal" style="position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:260;">
+    <div style="background:#fff;max-width:90vw;max-height:90vh;overflow:auto;padding:16px;border-radius:12px;box-shadow:0 4px 20px #0008;display:flex;flex-direction:column;gap:16px;min-width:300px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <h2 style="margin:0;font-size:1.1rem;">My Prompt</h2>
+        <button id="customTemplatesClose" style="background:#f44336;color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:14px;cursor:pointer;line-height:1;" data-i18n="common.close">إغلاق</button>
+      </div>
+      
+      <!-- زر إضافة prompt جديد -->
+      <button id="addNewPromptBtn" style="padding:10px;background:#10a37f;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;font-size:0.95rem;" data-i18n="my_prompt.add_new">+ Add New Prompt</button>
+      
+      <!-- منطقة إضافة prompt جديد (مخفية بالبداية) -->
+      <div id="addPromptForm" style="border:2px dashed #ddd;border-radius:8px;padding:12px;display:none;flex-direction:column;gap:10px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <h3 style="margin:0;font-size:0.95rem;" data-i18n="my_prompt.add_new">Add New Prompt</h3>
+          <button id="cancelAddPromptBtn" style="background:#999;color:#fff;border:none;border-radius:4px;padding:4px 8px;font-size:12px;cursor:pointer;" data-i18n="common.cancel">Cancel</button>
+        </div>
+        <input type="file" id="customTemplateImage" accept="image/*" style="padding:8px;border:1px solid #ddd;border-radius:4px;">
+        <input type="text" id="customTemplateText" placeholder="نص الأمر أو الوصف..." data-i18n-placeholder="my_prompt.command_placeholder" style="padding:8px;border:1px solid #ddd;border-radius:4px;font-size:0.9rem;">
+        <button id="customTemplateSaveBtn" style="padding:8px;background:#10a37f;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:600;" data-i18n="my_prompt.save_prompt">Save Prompt</button>
+      </div>
+      
+      <!-- قائمة القوالب -->
+      <div id="customTemplatesList" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;"></div>
+    </div>
+  </div>
+
+  <div class="sessions-menu">
+    <div class="menu-header">
+      <span data-i18n="sessions.title">سجل الجلسات</span>
+      <button class="menu-close">×</button>
+    </div>
+    <div class="menu-content" id="sessionsContent">
+      <div class="session-list" id="sessionList"></div>
+    </div>
+    <div class="menu-footer" style="justify-content: space-between;">
+      <button id="newSessionBtn" data-i18n="sessions.new">جلسة جديدة</button>
+      <button id="clearSessionsBtn" data-i18n="sessions.clear_all">مسح الكل</button>
+    </div>
+  </div>
+
+  <!-- زر المستخدم -->
+  <button class="user-menu-btn" title="إعدادات المستخدم" data-i18n-title="settings.title">👤</button>
+  <div class="user-menu">
+    <div class="menu-header">
+      <span data-i18n="settings.title">إعدادات المستخدم</span>
+      <button class="menu-close">×</button>
+    </div>
+    <div class="menu-content" id="userContent">
+      <div class="settings-form">
+        <label>
+          <span data-i18n="settings.username">اسم المستخدم:</span>
+          <input type="text" id="usernameInput" placeholder="guest">
+        </label>
+        <label>
+          <span data-i18n="settings.language">اللغة:</span>
+          <select id="languageSelect">
+            <option value="ar" data-i18n="languages.ar">العربية</option>
+            <option value="en" data-i18n="languages.en">English</option>
+            <option value="zh" data-i18n="languages.zh">中文</option>
+            <option value="ja" data-i18n="languages.ja">日本語</option>
+          </select>
+        </label>
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="darkModeToggle">
+          <span data-i18n="settings.dark_mode">⚫ الوضع الداكن</span>
+        </label>
+        <label>
+          <span style="filter:grayscale(1)" data-i18n="settings.ollama_model">🤖 نموذج OLLAMA:</span>
+          <select id="ollamaModelSelect" style="width:100%;padding:6px;border:1px solid #ddd;border-radius:6px;font-size:13px;margin-top:4px;background:white;color:#333">
+            <option value="" data-i18n="common.loading">⏳ جاري التحميل...</option>
+          </select>
+        </label>
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="lmButtonHidden" checked>
+          <span style="filter:grayscale(1)" data-i18n="settings.show_lm_button">👁️ إظهار زر LM</span>
+        </label>
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="lmTranslateArabic">
+          <span data-i18n="settings.translate_lm_messages">ترجمة رسائل LM</span>
+        </label>
+        <label style="cursor: pointer;">
+          <input type="checkbox" id="autoTranslateArabic">
+          <span data-i18n="settings.auto_translate_arabic_prompt">الترجمة التلقائيه عربي الى انجليزي</span>
+        </label>
+</div>
+    </div>
+    <div class="menu-footer">
+    <button id="loginBtn" class="btn" data-i18n="settings.login">تسجيل دخول</button>
+      <button id="deleteAllMediaBtn" style="background:#f44336;margin-left:auto" data-i18n="settings.delete_all_media">حذف جميع الوسائط</button>
+      <button id="saveSettingsBtn" data-i18n="common.save">حفظ</button>
+    </div>
+  </div>
+
+  <!-- الدردشة -->
+  <div id="restoringBanner" style="display:none;margin:8px auto 4px;padding:6px 10px;border-radius:10px;background:#fff8c5;border:1px solid #f0d400;color:#7a5d00;max-width:820px;text-align:center;font-size:.95rem" data-i18n="loader.restoring_session">جارٍ استرجاع الجلسة…</div>
+  <div id="chat"></div>
+
+  <!-- composer + زر التبديل -->
+  <div id="composerWrap">
+    <div id="composer">
+      <button id="toggleBtn" class="icon-btn" title="إيجابي/سلبي" data-i18n-title="composer.pos_neg">±</button>
+      <button id="uploadBtn" class="icon-btn" title="رفع ملف" data-i18n-title="composer.upload">📁</button>
+      <input type="file" id="fileInput" accept="image/*,video/*,audio/*" multiple>
+      <div id="filePreviews"></div>
+      <textarea id="mainInput" rows="1" placeholder="اكتب هنا …" title="اكتب رسالتك. استخدم Enter للأسطر الجديدة. اضغط Ctrl+Enter (أو Cmd+Enter على Mac) للإرسال." data-i18n-placeholder="composer.type_here" data-i18n-title="composer.multiline_hint"></textarea>
+      <button id="sendBtn" disabled>➤</button>
+    </div>
+    <button id="tplToggle">▲</button>
+  </div>
+
+  <!-- شريط القوالب -->
+  <div id="templatesRow">
+    <div id="templatesSlider"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <div class="close">×</div>
+    <div class="nav prev">‹</div>
+    <img src="">
+    <div class="nav next">›</div>
+  </div>
+
+  <!-- نافذة القص -->
+  <div id="cropModal">
+    <div id="cropBox">
+      <canvas id="cropCanvas"></canvas>
+      <div class="crop-actions">
+        <button class="crop-ok" data-i18n="crop.crop">قص</button>
+        <button id="cropToMask" class="crop-mask" data-i18n="mask.open_editor_short">🎨 محرر أقنعة</button>
+        <button class="crop-cancel" data-i18n="crop.no_crop">بدون قص</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال مجلدات القوالب -->
+  <div id="tplFolderModal">
+    <div id="tplFolderBox">
+      <div id="tplFolderHeader">
+        <h2 id="tplFolderTitle" data-i18n="templates.title">قوالب</h2>
+        <button id="tplFolderClose" data-i18n="common.close">إغلاق</button>
+      </div>
+      <div id="tplFolderGrid"></div>
+    </div>
+  </div>
+
+  <!-- مودال تعديل رسالة -->
+  <div id="editMsgModal">
+    <div id="editMsgBox">
+      <h3 data-i18n="edit.edit_message">تعديل الرسالة</h3>
+      <textarea id="editMsgInput" rows="4"></textarea>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.95rem;">
+        <input type="checkbox" id="editMsgIncludeImgs">
+        <span data-i18n="edit.send_with_same_files">أرسل مع نفس الملفات</span>
+      </label>
+      <div style="display:flex;justify-content:flex-end;gap:8px;">
+        <button id="editMsgCancel" data-i18n="common.cancel">إلغاء</button>
+        <button id="editMsgSend" data-i18n="edit.send_edited">إرسال معدل</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نموذج محرر الأقنعة -->
+  <div id="maskEditorModal">
+    <div id="maskEditorBox">
+      <div id="maskEditorHeader">
+        <h3 data-i18n="mask.editor_title">🎨 محرر الأقنعة</h3>
+        <button id="maskEditorClose">×</button>
+      </div>
+      
+      <div id="maskEditorTopBar">
+        <div class="mask-tool-group">
+          <label data-i18n="mask.brush_size">الحجم:</label>
+          <input type="range" id="maskBrushSize" min="5" max="200" value="30">
+          <span id="maskBrushSizeLabel">30</span>
+        </div>
+        
+        <div style="width:1px;height:30px;background:#ddd;margin:0 8px;"></div>
+        
+        <div class="mask-tool-group">
+          <label data-i18n="mask.opacity">الشفافية:</label>
+          <input type="range" id="maskAlpha" min="0" max="255" value="255">
+          <span id="maskAlphaLabel">255</span>
+        </div>
+      </div>
+      
+      <div id="maskEditorContent">
+        <div id="maskEditorMain">
+          <canvas id="maskCanvas" width="400" height="300"></canvas>
+          <div id="maskStatus" data-i18n="mask.status_pick_image">اختر صورة لتبدأ الرسم</div>
+          
+          <!-- أزرار عائمة للزوم والحركة -->
+          <div id="maskFloatingTools" style="position:absolute;bottom:12px;right:12px;display:flex;flex-direction:column;gap:6px;background:#fff;padding:8px;border-radius:8px;box-shadow:0 2px 8px #0003;">
+            <button id="maskZoomIn" class="mask-tool-btn" title="تكبير" data-i18n-title="mask.zoom_in">🔍+</button>
+            <button id="maskZoomOut" class="mask-tool-btn" title="تصغير" data-i18n-title="mask.zoom_out">🔍−</button>
+            <button id="maskZoomReset" class="mask-tool-btn" title="إعادة تعيين" data-i18n-title="mask.zoom_reset">🏠</button>
+            <button id="maskPanMode" class="mask-tool-btn" title="وضع الحركة" data-i18n-title="mask.pan_mode">✋</button>
+          </div>
+        </div>
+        
+        <div id="maskEditorSidebar">
+          <button id="maskSoftToggle" class="mask-tool-btn" title="فرشاة ناعمة/حادة" data-i18n-title="mask.soft_hard_brush">🪶</button>
+
+          <div id="maskSoftnessWrap" style="display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:#333;width:72px;">
+            <span data-i18n="mask.softness">نعومة</span>
+            <input type="range" id="maskSoftness" min="0" max="100" value="70" style="width:70px;">
+            <span id="maskSoftnessLabel">70%</span>
+          </div>
+
+          <button id="maskEraserToggle" class="mask-tool-btn" title="ممحاة" data-i18n-title="mask.eraser">🧹</button>
+          <button id="maskClear" class="mask-tool-btn" title="مسح الكل" data-i18n-title="mask.clear_all">🗑️</button>
+          <button id="maskInvert" class="mask-tool-btn" title="عكس" data-i18n-title="mask.invert">🔄</button>
+          
+          <!-- لون الفرشاة -->
+          <input type="color" id="maskBrushColor" value="#000000" class="mask-tool-btn" title="لون الفرشاة" data-i18n-title="mask.brush_color" style="width:50px;height:50px;border:2px solid #ddd;border-radius:8px;cursor:pointer;padding:2px;">
+          
+          <div style="height:1px;width:50px;background:#ddd;margin:8px 0;"></div>
+          
+          <button id="maskApply" class="mask-action-btn apply" title="تطبيق" data-i18n-title="mask.apply">✓</button>
+          <button id="maskSaveWithOverlay" class="mask-action-btn" style="background:#2196F3;" title="حفظ مع التلوين" data-i18n-title="mask.save_with_overlay">✓</button>
+          <button id="maskCancel" class="mask-action-btn cancel" title="إلغاء" data-i18n-title="common.cancel">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/features/000_i18n.js"></script>
+  <script src="/static/features/001_preamble.js"></script>
+<script src="/static/features/002_utils.js"></script>
+<script src="/static/features/003_dom.js"></script>
+<script src="/static/features/004_api_setup.js"></script>
+<script src="/static/features/005_state.js"></script>
+<script src="/static/features/006_history.js"></script>
+<script src="/static/features/007_layout.js"></script>
+<script src="/static/features/008_templates_load.js"></script>
+<script src="/static/features/009_templates_ui.js"></script>
+<script src="/static/features/010_templates_modal.js"></script>
+<script src="/static/features/011_mode_menu.js"></script>
+<script src="/static/features/012_posneg_toggle.js"></script>
+<script src="/static/features/013_uploader.js"></script>
+<script src="/static/features/014_cropper.js"></script>
+<script src="/static/features/040_audio_trimmer.js"></script>
+<script src="/static/features/015_templates_toggle.js"></script>
+<script src="/static/features/016_chat_bubbles.js"></script>
+<script src="/static/features/017_lightbox.js"></script>
+<script src="/static/features/018_edit_modal.js"></script>
+<script src="/static/features/019_send.js"></script>
+<script src="/static/features/020_send_edit.js"></script>
+<script src="/static/features/021_resend_user.js"></script>
+<script src="/static/features/022_regen.js"></script>
+<script src="/static/features/023_reset_ui.js"></script>
+<script src="/static/features/024_send_button.js"></script>
+<script src="/static/features/025_user_sessions.js"></script>
+<script src="/static/features/026_section.js"></script>
+<script src="/static/features/027_section.js"></script>
+<script src="/static/features/028_section.js"></script>
+
+  <script src="/static/features/029_colors.js"></script>
+  <script src="/static/features/030_tag_loader.js"></script>
+  <script src="/static/features/031_tag_worker.js"></script>
+  <script src="/static/features/032_tag_autocomplete.js"></script>
+  <script src="/static/features/033_prompt_pipeline.js"></script>
+  <script src="/static/features/034_favorites.js"></script>
+
+<div id="easy-tag-settings-block" style="margin:10px 0; display:flex; flex-direction:column; gap:8px;">
+  <label style="display:flex;align-items:center;gap:8px;">
+    <input type="checkbox" id="cbTagAutocomplete">
+    <span data-i18n="easy_tag.enable_autocomplete">تشغيل إكمال التاقات</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:8px;">
+    <input type="checkbox" id="cbTagMergeQuality">
+    <span data-i18n="easy_tag.merge_quality">دمج تاقات الجودة</span>
+  </label>
+  <label style="display:flex;align-items:center;gap:8px;">
+    <span data-i18n="easy_tag.tags_file">ملف التاقات:</span>
+    <select id="tagSourceSelect" style="min-width:220px"></select>
+  </label>
+  <label style="display:flex;align-items:center;gap:8px;">
+    <span data-i18n="easy_tag.chants_file">ملف الـ Chants:</span>
+    <select id="chantSourceSelect" style="min-width:220px"></select>
+  </label>
+</div>
+
+<script>
+(function(){
+  function qs(s, r){ return (r||document).querySelector(s); }
+  function loadSettings(){
+    try{ return JSON.parse(localStorage.getItem('easyTagSettings:guest')||'{}'); }catch(e){ return {}; }
+  }
+  function saveSettings(s){
+    try{ localStorage.setItem('easyTagSettings:guest', JSON.stringify(s)); }catch(e){}
+    var evt = new CustomEvent('easyTagSettingsChanged', { detail: s });
+    document.dispatchEvent(evt);
+  }
+  function attachBlock(){
+    var block = document.getElementById('easy-tag-settings-block');
+    if (!block) return;
+    var form = qs('.user-menu .menu-content .settings-form') || qs('.settings-form') || qs('#user-settings') || qs('#settings');
+    if (form && !form.contains(block)) form.appendChild(block);
+  }
+  function applySelectValue(select, value){
+    var v = value || '';
+    for (var i=0;i<select.options.length;i++){
+      if (select.options[i].value === v){ select.selectedIndex = i; return; }
+    }
+  }
+  function fillSelect(select, list, current){
+    select.innerHTML='';
+    if (!list || !list.length){
+      var opt = document.createElement('option');
+      opt.value='';
+      opt.textContent = (window.t ? window.t('common.no_files', 'لا توجد ملفات') : 'لا توجد ملفات');
+      select.appendChild(opt);
+      return;
+    }
+    list.forEach(function(f){
+      var opt = document.createElement('option'); opt.value=f; opt.textContent=f; select.appendChild(opt);
+    });
+    if (current && current.indexOf('/')>=0) current = current.split('/').pop();
+    applySelectValue(select, current || list[0] || '');
+  }
+  async function fetchJSON(url){
+    var r = await fetch(url, {cache:'no-cache'});
+    if (!r.ok) throw new Error('status '+r.status);
+    return r.json();
+  }
+  async function getTagList(){
+    try{ var a = await fetchJSON('/api/easy-tag/files'); if (a && Array.isArray(a.tags) && a.tags.length){ localStorage.setItem('easyTagKnownFiles', JSON.stringify(a.tags)); return a.tags; } }catch(e){}
+    try{ var m = await fetchJSON('/easy-tag/tags/_manifest.json'); if (m && Array.isArray(m.tags) && m.tags.length){ localStorage.setItem('easyTagKnownFiles', JSON.stringify(m.tags)); return m.tags; } }catch(e){}
+    try{ var c = JSON.parse(localStorage.getItem('easyTagKnownFiles')||'[]'); if (c && c.length) return c; }catch(e){}
+    var cur = (window.userSettings && window.userSettings.tag_source_main) || '';
+    if (cur && cur.indexOf('/')>=0) cur = cur.split('/').pop();
+    return cur ? [cur] : [];
+  }
+  async function getChantList(){
+    try{ var a = await fetchJSON('/api/easy-tag/chant-files'); if (a && Array.isArray(a.chants) && a.chants.length){ localStorage.setItem('easyChantKnownFiles', JSON.stringify(a.chants)); return a.chants; } }catch(e){}
+    try{ var m = await fetchJSON('/easy-tag/chants/_manifest.json'); if (m && Array.isArray(m.chants) && m.chants.length){ localStorage.setItem('easyChantKnownFiles', JSON.stringify(m.chants)); return m.chants; } }catch(e){}
+    try{ var c = JSON.parse(localStorage.getItem('easyChantKnownFiles')||'[]'); if (c && c.length) return c; }catch(e){}
+    var cur = (window.userSettings && window.userSettings.chant_source_main) || '';
+    if (cur && cur.indexOf('/')>=0) cur = cur.split('/').pop();
+    return cur ? [cur] : [];
+  }
+  async function init(){
+    attachBlock();
+    var s = loadSettings();
+    var cbAuto = document.getElementById('cbTagAutocomplete');
+    var cbMerge = document.getElementById('cbTagMergeQuality');
+    var selTags = document.getElementById('tagSourceSelect');
+    var selChants = document.getElementById('chantSourceSelect');
+
+    if (cbAuto){ cbAuto.checked = !!s.enable_tag_autocomplete; cbAuto.onchange = function(){ var cur = loadSettings(); cur.enable_tag_autocomplete = !!cbAuto.checked; saveSettings(cur); }; }
+    if (cbMerge){ cbMerge.checked = !!s.tag_include_extra_quality; cbMerge.onchange = function(){ var cur = loadSettings(); cur.tag_include_extra_quality = !!cbMerge.checked; saveSettings(cur); }; }
+
+    var tagList = await getTagList();
+    if (selTags){ fillSelect(selTags, tagList, (s.tag_source_main || '').split('/').pop()); selTags.onchange = function(){ var cur = loadSettings(); var v = selTags.value || ''; cur.tag_source_main = v ? ('easy-tag/tags/' + v) : ''; saveSettings(cur); }; }
+
+    var chantList = await getChantList();
+    if (selChants){ fillSelect(selChants, chantList, (s.chant_source_main || '').split('/').pop()); selChants.onchange = function(){ var cur = loadSettings(); var v = selChants.value || ''; cur.chant_source_main = v ? ('easy-tag/chants/' + v) : ''; saveSettings(cur); }; }
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    attachBlock();
+    var mo = new MutationObserver(attachBlock);
+    mo.observe(document.body, {subtree:true, childList:true});
+    init();
+  });
+})();
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const delBtn = document.getElementById('deleteAllMediaBtn');
+  if (delBtn) {
+    delBtn.addEventListener('click', async function(){
+      const usernameInput = document.getElementById('usernameInput');
+      const username = (usernameInput && usernameInput.value.trim()) || 'guest';
+      const confirmMsg = (window.t
+        ? window.t('settings.confirm_delete_all_media', 'سيتم حذف جميع الوسائط المذكورة في media_paths.txt لهذا المستخدم. هل أنت متأكد؟')
+        : 'سيتم حذف جميع الوسائط المذكورة في media_paths.txt لهذا المستخدم. هل أنت متأكد؟');
+      if (!confirm(confirmMsg)) return;
+      try {
+        const r = await fetch('/api/user/delete_all_media', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({username})
+        });
+        const j = await r.json();
+        if (!j.success) throw new Error(j.error || ('HTTP '+r.status));
+        
+        // مسح كاش المتصفح للوسائط المحذوفة
+        try {
+          // مسح كاش الصور من الذاكرة
+          if (Array.isArray(window.chatMedia)) {
+            window.chatMedia = [];
+          }
+          
+          // مسح Cache API إذا كان متاحاً
+          if ('caches' in window) {
+            const cacheNames = await caches.keys();
+            for (const cacheName of cacheNames) {
+              const cache = await caches.open(cacheName);
+              const requests = await cache.keys();
+              for (const request of requests) {
+                const url = request.url;
+                // حذف الصور من /uploads/ و /media/
+                if (url.includes('/uploads/') || url.includes('/media/')) {
+                  await cache.delete(request);
+                }
+              }
+            }
+          }
+          
+          // إفراغ ذاكرة الصور المحملة
+          const imgs = document.querySelectorAll('img[src*="/uploads/"], img[src*="/media/"]');
+          imgs.forEach(img => {
+            img.src = '';
+            img.removeAttribute('src');
+          });
+        } catch(cacheErr) {
+          console.warn('فشل مسح الكاش:', cacheErr);
+        }
+        
+        const okMsg = (window.t
+          ? window.t('settings.delete_done', 'تم الحذف.\nالمحذوف: {deleted}\nغير موجود: {missing}\nفشل: {failed}\n\nتم مسح الكاش أيضاً', {
+              deleted: j.deleted_count,
+              missing: j.missing_count,
+              failed: j.failed_count
+            })
+          : ('تم الحذف.\nالمحذوف: ' + j.deleted_count + '\nغير موجود: ' + j.missing_count + '\nفشل: ' + j.failed_count + '\n\nتم مسح الكاش أيضاً'));
+        alert(okMsg);
+        
+        // إعادة تحميل الصفحة لتطبيق التغييرات
+        location.reload();
+      } catch(e) {
+        const errMsg = (window.t
+          ? window.t('settings.delete_failed', 'فشل الحذف: {message}', { message: e.message })
+          : ('فشل الحذف: ' + e.message));
+        alert(errMsg);
+      }
+    });
+  }
+});
+</script>
+
+<script src="/static/features/035_mask_editor.js"></script>
+<script src="/static/features/036_my_prompt.js"></script>
+<script src="/static/features/037_plugin_manager.js"></script>
+<script src="/static/features/038_dark_mode.js"></script>
+<script src="/static/features/039_lm_button.js"></script>
+</html>

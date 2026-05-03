@@ -1,0 +1,35 @@
+# intents.yml
+#
+# الخيارات المتاحة لكل نيّة:
+#   file: اسم ملف الوركفلو (أو null إذا لا يوجد)
+#   response: رد ثابت نصي
+#   response_file: ملف نصي للرد
+#   no_remove: true  ← عند التفعيل لا يُشطب كلمة الـalias من النص
+#
+intents:
+  help:
+    file: null
+    response: This response is from the intent file, but you can also get responses from text files.
+    aliases:
+    - ما الذي يمكنك فعله
+    - ما الذي يمكنك عمله
+    - ماذا تستطيع
+    - ساعدني
+    - help
+  sec:
+    response_file: sec.txt
+    aliases:
+    - sec
+  generate:
+    file: txt2img_api.json
+    aliases:
+    - generate
+    - create
+    - ولد
+    - توليد
+  pythonapp:
+    file: null
+    aliases:
+    - pythonapp
+    - runbat
+    - تشغيل
