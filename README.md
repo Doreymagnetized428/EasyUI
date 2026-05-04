@@ -32,12 +32,13 @@ EasyUI is a lightweight web interface that provides:
 
 ## License
 
-This project is based on the MIT License, with an additional UI attribution requirement.
+This project is based on a custom license.
 
 You are free to use, modify, and distribute this project, including for commercial use.
 
-However, you must keep the following credit in the user interface:
-"EasyUI base made by kigy
+However, you must keep the following credit visible in the user interface:
+"EasyUI base made by kigy"
+
 Full license terms are provided in the LICENSE file.
 
 
